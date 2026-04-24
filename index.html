@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王瑞琪 | HMI & 产品专家数字作品集</title>
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --glass: rgba(255, 255, 255, 0.15); /* 你要求的15%透明白 */
+            --bg-dark: #020205;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'SF Pro Display', 'PingFang SC', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 统一模糊效果 */
+        .glass-effect {
+            background: var(--glass);
+            backdrop-filter: blur(12px); /* 你要求的12px高斯模糊 */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+        }
+
+        /* 第一屏：震撼开场 */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #020205 70%);
+        }
+        .hero h1 { font-size: 5rem; letter-spacing: 12px; background: linear-gradient(to bottom, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .tagline { font-size: 1.2rem; color: var(--neon-blue); letter-spacing: 4px; margin-bottom: 40px; }
+
+        /* 交互入口网格 */
+        .action-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 80%; max-width: 1000px;
+        }
+        .action-btn {
+            padding: 30px; text-decoration: none; color: #fff; transition: 0.4s;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .action-btn:hover { transform: translateY(-10px); background: rgba(255,255,255,0.25); border-color: var(--neon-blue); }
+        .action-btn i { font-size: 30px; margin-bottom: 10px; }
+
+        /* 第二屏：深度履历 */
+        .content-section { min-height: 100vh; padding: 100px 10%; }
+        .project-card { padding: 40px; margin-bottom: 40px; }
+        .stat-badge { font-size: 2.5rem; color: var(--neon-blue); font-weight: 800; display: block; }
+
+        /* 第三屏：智慧校园专项 */
+        .campus-section { height: 100vh; padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
+        .campus-display {
+            width: 100%; height: 60vh; border-radius: 20px; border: 2px solid var(--neon-blue);
+            background: linear-gradient(45deg, #001122, #002244);
+            display: flex; align-items: center; justify-content: center; position: relative;
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.2);
+        }
+
+        .scroll-down { position: absolute; bottom: 30px; animation: bounce 2s infinite; opacity: 0.5; font-size: 0.8rem; }
+        @keyframes bounce { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-10px);} }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>王瑞琪</h1>
+        <p class="tagline">HMI PRODUCT DESIGNER | BIT GRADUATE</p>
+        
+        <div class="action-grid">
+            <a href="mailto:ruiqi1213@foxmail.com" class="glass-effect action-btn">
+                <span>📩</span>
+                <p>下载我的简历</p>
+            </a>
+            <a href="#campus" class="glass-effect action-btn">
+                <span>🏫</span>
+                <p>智慧校园大屏交互</p>
+            </a>
+            <a href="https://ruiqi1213.github.io/" class="glass-effect action-btn" style="border-color: #ff3b30;">
+                <span>🛡️</span>
+                <p>可交互军工界面</p>
+            </a>
+        </div>
+        <div class="scroll-down">探索更多深度项目 ↓</div>
+    </section>
+
+    <section class="content-section">
+        <h2 style="margin-bottom:50px; font-size: 2.5rem;">核心 HMI 落地案例</h2>
+        
+        <div class="glass-effect project-card">
+            <h3>一控多车辆人机交互产品项目 (To G)</h3>
+            <p style="color:rgba(255,255,255,0.6); margin: 10px 0;">中国北方车辆研究所 | 2025.09 - 2026.03 [cite: 10, 11]</p>
+            <div style="display:flex; gap:40px; margin-top:20px;">
+                <div>
+                    <span class="stat-badge">35.5% ↑</span>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">整体操控效率提升 [cite: 21]</p>
+                </div>
+                <div>
+                    <span class="stat-badge">40% ↓</span>
+                    <p style="font-size: 0.9rem; opacity: 0.7;">操作步骤精简 [cite: 21]</p>
+                </div>
+            </div>
+            <p style="margin-top:20px; line-height:1.6;">基于眼动数据进行用户行为分析，主导 6 版交互流程迭代，成功推动方案正式上车。 [cite: 20, 21]</p>
+        </div>
+
+        <div class="glass-effect project-card">
+            <h3>多人协作车辆人机交互项目 (To B)</h3>
+            <p style="color:rgba(255,255,255,0.6); margin: 10px 0;">中国兵器工业集团 | 2024.09 - 2025.07 [cite: 22, 24]</p>
+            <p style="line-height:1.6;">解决信息不同步与权限冲突，通过对称多屏布局实现从 0 到 1 的多人协同系统落地，并顺利通过军方验收。 [cite: 27, 28, 29]</p>
+        </div>
+    </section>
+
+    <section class="campus-section" id="campus">
+        <h2 style="margin-bottom:30px;">北理工智慧校园大屏交互方案</h2>
+        <div class="campus-display glass-effect">
+            <div style="text-align:center;">
+                <p style="font-size: 1.5rem; letter-spacing: 2px;">BIT SMART CAMPUS DASHBOARD</p>
+                <p style="opacity: 0.5; margin-top: 10px;">独立完成中关村校区全要素 UI 地图背景绘制 [cite: 48]</p>
+            </div>
+        </div>
+        <p style="margin-top:40px; opacity: 0.7; line-height: 1.8;">
+            采用 Adobe AI 鼠标手绘实现高精度视觉呈现，该方案已正式落地应用，体现了高效推进大型视觉设计项目的执行力。 [cite: 48]
+        </p>
+    </section>
+
+    <footer style="text-align:center; padding-bottom: 50px; opacity: 0.4; font-size: 0.8rem;">
+        王瑞琪 | 18733931626 | ruiqi1213@foxmail.com [cite: 1, 3]
+    </footer>
+
+</body>
+</html>
