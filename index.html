@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王瑞琪 | HMI & 产品经理作品集</title>
+    <style>
+        :root {
+            /* 调色盘：深邃星空底色 + 极光蓝 */
+            --bg-deep: #050507;
+            --glass-white: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent-blue: #007aff;
+            --accent-glow: rgba(0, 122, 255, 0.4);
+            --text-bright: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-bright);
+            font-family: "Inter", "SF Pro Display", "PingFang SC", sans-serif;
+            overflow-x: hidden;
+            /* 背景氛围光晕 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 122, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(155, 89, 182, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* 核心毛玻璃类：12px高斯模糊 + 15%透明白 */
+        .glass-panel {
+            background: var(--glass-white);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow);
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        /* 布局容器 */
+        .dashboard {
+            max-width: 1400px; margin: 0 auto; padding: 120px 40px;
+            display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 180px; gap: 24px;
+        }
+
+        /* 导航 */
+        nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 600px; height: 54px; z-index: 1000;
+            display: flex; justify-content: space-around; align-items: center;
+        }
+        nav a { color: var(--text-bright); text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.6; transition: 0.3s; }
+        nav a:hover { opacity: 1; color: var(--accent-blue); }
+
+        /* 欢迎区 (占据 8列宽) */
+        .hero-box { grid-column: span 8; grid-row: span 2; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-box h1 { font-size: 3.5rem; letter-spacing: -1px; margin-bottom: 10px; }
+        .hero-box .tagline { font-size: 1.2rem; color: var(--accent-blue); font-weight: 600; margin-bottom: 20px; }
+        .hero-box p { color: var(--text-dim); max-width: 500px; line-height: 1.6; }
+
+        /* 军工原型大入口 (占据 4列宽 2列高) */
+        .prototype-cta { 
+            grid-column: span 4; grid-row: span 2; 
+            background: linear-gradient(135deg, rgba(0,122,255,0.3) 0%, rgba(0,0,0,0.5) 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .pulse-icon {
+            width: 80px; height: 80px; border-radius: 50%; background: var(--accent-blue);
+            display: flex; align-items: center; justify-content: center; font-size: 32px;
+            box-shadow: 0 0 30px var(--accent-glow); animation: pulse 2s infinite; margin-bottom: 20px;
+        }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 20px var(--accent-glow); } 50% { transform: scale(1.1); box-shadow: 0 0 50px var(--accent-glow); } 100% { transform: scale(1); box-shadow: 0 0 20px var(--accent-glow); } }
+
+        /* 项目详情卡片 (Bento Grid) */
+        .card-title { font-size: 14px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+        .stat-num { font-size: 3rem; font-weight: 800; background: linear-gradient(to bottom, #fff, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* 堆叠层级感 */
+        .stack-box { grid-column: span 6; grid-row: span 2; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; }
+        .inner-chip { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* 按钮 */
+        .btn-glass {
+            padding: 12px 32px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px; color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s;
+        }
+        .btn-glass:hover { background: #fff; color: #000; }
+
+        @media (max-width: 1024px) {
+            .dashboard { display: flex; flex-direction: column; padding: 100px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="glass-panel">
+        <a href="#work">项目案例</a>
+        <a href="#about">个人履历</a>
+        <a href="#skills">核心技能</a>
+    </nav>
+
+    <div class="dashboard">
+        <div class="glass-panel hero-box">
+            <span class="tagline">北京理工大学 · 工业设计硕士</span>
+            <h1>王瑞琪</h1>
+            <p>主导一控多及多人协作 HMI 场景优化，通过眼动分析与高频迭代，实现操控效率提升 35.5%。</p>
+        </div>
+
+        <div class="glass-panel prototype-cta" onclick="window.open('你的Axure或Figma链接')">
+            <div class="pulse-icon">🕹️</div>
+            <span class="card-title">INTERACTIVE PROTOTYPE</span>
+            <h2 style="margin-bottom: 15px;">军工战车座舱<br>HMI 交互系统</h2>
+            <p style="font-size: 13px; margin-bottom: 25px; opacity: 0.6;">多人协同、权限冲突解决、全要素交互</p>
+            <a href="#" class="btn-glass">进入模拟舱</a>
+        </div>
+
+        <div class="glass-panel stack-box">
+            <div>
+                <span class="card-title">PROJECT 01 / TO G</span>
+                <h3>一控多车辆人机交互产品</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: var(--text-dim);">中国北方车辆研究所-201所</p>
+            </div>
+            <div class="inner-chip">
+                <span class="stat-num">35.5%</span>
+                <p style="font-size: 13px;">整体操控效率提升，方案早于预期时间顺利验收上车。</p>
+            </div>
+            <p style="font-size: 13px; opacity: 0.5;">* 主导 6 版流程迭代，眼动追踪验证卡点 20+ 项。</p>
+        </div>
+
+        <div class="glass-panel stack-box">
+            <div>
+                <span class="card-title">PROJECT 02 / TO B</span>
+                <h3>多人协作车辆 HMI 交互</h3>
+                <p style="font-size: 14px; margin-top: 10px; color: var(--text-dim);">中国兵器工业集团-创新院</p>
+            </div>
+            <div class="inner-chip" style="border-left: 4px solid var(--accent-blue);">
+                <p style="font-size: 15px; font-weight: 600;">正式上车应用</p>
+                <p style="font-size: 13px; margin-top: 5px;">成功解决战车场景下信息不同步与权限清晰化问题。</p>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <span style="font-size: 11px; padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">多人操作场景拆解</span>
+                <span style="font-size: 11px; padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">对称多屏布局</span>
+            </div>
+        </div>
+
+        <div class="glass-panel" style="grid-column: span 4; padding: 30px; display: flex; flex-direction: column; justify-content: center;">
+            <span class="card-title">HONORS</span>
+            <h4 style="font-size: 1.2rem;">考研专业第一 (428分)</h4>
+            <p style="font-size: 13px; color: var(--accent-blue); margin-top: 5px;">校级特等奖学金</p>
+        </div>
+
+        <div class="glass-panel" style="grid-column: span 4; padding: 30px; display: flex; flex-direction: column; justify-content: center;">
+            <span class="card-title">VISUAL SKILLS</span>
+            <p style="font-size: 13px;">独立绘制北理工智慧校园大屏 UI</p>
+            <p style="font-size: 12px; margin-top: 8px; opacity: 0.5;">Adobe AI / Figma / Rhino / Keyshot</p>
+        </div>
+
+        <div class="glass-panel" style="grid-column: span 4; padding: 30px; display: flex; flex-direction: column; justify-content: center;">
+            <span class="card-title">LANGUAGES</span>
+            <h4 style="font-size: 1.1rem;">CET-6 (576分)</h4>
+            <p style="font-size: 12px; opacity: 0.5; margin-top: 5px;">英语口语流利，具备国际化视角。</p>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding-bottom: 80px; opacity: 0.4; font-size: 12px; letter-spacing: 1px;">
+        DESIGNED BY WRQ | 18733931626 | ruiqi1213@foxmail.com
+    </footer>
+
+</body>
+</html>
