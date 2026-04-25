@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>王瑞琪 | RUIQI WANG - HMI & Product</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 瑞琪专属 HMI 风格：12px模糊 + 15%透明白 */
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #020205; font-family: 'Segoe UI', sans-serif; }
+        
+        #main-container { position: relative; width: 100%; height: 100%; }
+
+        /* 1. 初始静态预览层 */
+        #static-layer {
+            position: absolute; width: 100%; height: 100%;
+            /* 确保你的图片文件名叫 中关村地图.jpg */
+            background: url('中关村地图.jpg') center/cover no-repeat; 
+            z-index: 100; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* 磨砂玻璃质感的启动按钮 */
+        .start-btn {
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 242, 255, 0.5);
+            color: #00f2ff;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            transition: 0.3s;
+        }
+        .start-btn:hover { background: rgba(0, 242, 255, 0.2); transform: scale(1.05); }
+
+        /* 2. Axure 交互框架层 */
+        #axure-frame { width: 100%; height: 100%; border: none; display: none; }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="static-layer">
+            <button class="start-btn" onclick="launchHMI()">ENTER INTERACTIVE MAP / 开启交互</button>
+        </div>
+
+        <iframe id="axure-frame" src="about:blank"></iframe>
+    </div>
+
+    <script>
+        function launchHMI() {
+            document.getElementById('static-layer').style.display = 'none';
+            const frame = document.getElementById('axure-frame');
+            frame.style.display = 'block';
+            
+            /* 【核心修改点】：请把下面的 start.html 改成你 Axure 导出文件夹里那个地图页面的名字 */
+            frame.src = 'main.html'; 
+        }
+    </script>
+</body>
+</html>
