@@ -3,57 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王瑞琪 | HMI & 产品专家数字作品集</title>
+    <title>王瑞琪 | RUIQI WANG - HMI & PRODUCT</title>
     <style>
-        :root { --neon-blue: #00f2ff; --glass: rgba(255, 255, 255, 0.12); --bg-dark: #020205; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg-dark); color: #fff; font-family: 'SF Pro Display', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
-        .glass-effect { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 28px; transition: 0.4s; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #0a1128 0%, #020205 80%); }
-        .hero h1 { font-size: 5rem; letter-spacing: 10px; background: linear-gradient(to bottom, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .action-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 85%; max-width: 1100px; margin-top: 50px; }
-        .action-item { padding: 30px; text-decoration: none; color: #fff; text-align: center; cursor: pointer; }
-        .section { padding: 100px 10%; }
-        .card { padding: 40px; margin-bottom: 30px; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        .stat-value { font-size: 3.5rem; font-weight: 800; color: var(--neon-blue); }
+        :root {
+            --neon-blue: #00f2ff;
+            --glass: rgba(255, 255, 255, 0.12);
+            --bg-dark: #020205;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        body { 
+            background: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'SF Pro Display', 'PingFang SC', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 军工扫描线背景效果 */
+        body::before {
+            content: " ";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            z-index: 100; pointer-events: none; opacity: 0.3;
+        }
+
+        /* 统一模糊玻璃卡片 */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 30px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            transform: scale(1.02);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+        }
+
+        /* 第一屏布局 */
+        .hero {
+            height: 100vh; padding: 50px 8%;
+            display: grid; grid-template-columns: 2fr 1fr; gap: 30px;
+            align-items: center;
+        }
+
+        .title-group h1 { font-size: 6rem; letter-spacing: 15px; font-weight: 900; line-height: 1; }
+        .tagline { color: var(--neon-blue); letter-spacing: 5px; margin-top: 20px; font-size: 1.2rem; }
+
+        /* 数据条 */
+        .data-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin: 15px 0; overflow: hidden; }
+        .data-bar-fill { height: 100%; background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); transition: 2s; }
+
+        /* 项目网格 */
+        .section { padding: 100px 8%; }
+        .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+
+        /* 入口按钮 */
+        .btn {
+            display: inline-block; padding: 15px 40px; border: 1px solid var(--neon-blue);
+            color: var(--neon-blue); text-decoration: none; border-radius: 50px;
+            font-size: 0.9rem; letter-spacing: 2px; margin-right: 20px; transition: 0.3s;
+        }
+        .btn:hover { background: var(--neon-blue); color: #000; box-shadow: 0 0 20px var(--neon-blue); }
+
+        @media (max-width: 1024px) { .hero { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
+
+    <header style="position: fixed; top: 20px; width: 100%; padding: 0 8%; display: flex; justify-content: space-between; font-size: 10px; letter-spacing: 2px; z-index: 1000; opacity: 0.6;">
+        <span>SYSTEM STATUS: STABLE</span>
+        <span>LOCATION: BEIJING INSTITUTE OF TECHNOLOGY</span>
+        <span>2026.04.26_ADMIN_RUIQI</span>
+    </header>
+
     <section class="hero">
-        <p style="opacity: 0.5;">北京理工大学 · 工业设计硕士</p>
-        <h1>王瑞琪</h1>
-        <p style="color: var(--neon-blue); letter-spacing: 5px;">HMI PRODUCT MANAGER</p>
-        <div class="action-container">
-            <a href="mailto:ruiqi1213@foxmail.com" class="glass-effect action-item"><i>📄</i><h4>下载简历</h4></a>
-            <a href="#projects" class="glass-effect action-item"><i>🕹️</i><h4>军工交互原型</h4></a>
-            <a href="#campus" class="glass-effect action-item"><i>🏫</i><h4>智慧校园大屏</h4></a>
+        <div class="title-group">
+            <p style="opacity: 0.5; margin-bottom: 10px;">INDUSTRIAL DESIGN MASTER</p>
+            <h1>王瑞琪</h1>
+            <p class="tagline">HMI 产品经理 / 智驾座舱专家</p>
+            <div style="margin-top: 50px;">
+                <a href="mailto:ruiqi1213@foxmail.com" class="btn">DOWNLOAD RESUME</a>
+                <a href="#projects" class="btn" style="opacity: 0.6;">EXPLORE PROJECTS</a>
+            </div>
+        </div>
+
+        <div class="glass-card" style="border-left: 4px solid var(--neon-blue);">
+            <h4 style="margin-bottom: 20px;">PILOT PROFILE</h4>
+            <p style="font-size: 12px; opacity: 0.7;">研究生：北京理工大学 (BIT)</p>
+            <p style="font-size: 12px; opacity: 0.7; margin-bottom: 20px;">荣誉：考研专业第一 (428分)</p>
+            <hr style="opacity: 0.1; margin-bottom: 20px;">
+            <div style="font-size: 11px;">
+                <p>FIGMA / SKETCH / UNITY</p>
+                <div class="data-bar-bg"><div class="data-bar-fill" style="width: 95%;"></div></div>
+                <p>HMI 交互逻辑重构</p>
+                <div class="data-bar-bg"><div class="data-bar-fill" style="width: 88%;"></div></div>
+            </div>
         </div>
     </section>
 
     <section class="section" id="projects">
-        <h2 style="margin-bottom:40px; border-left:5px solid var(--neon-blue); padding-left:20px;">核心项目经验</h2>
-        <div class="glass-effect card">
-            <div>
-                <h3>一控多车辆人机交互系统 (To G)</h3>
-                <p style="opacity: 0.7; margin-top:15px;">主导 6 版交互流程迭代，通过眼动分析定位 20+ 项卡点，提升操控效率 35.5%。</p>
+        <h2 style="font-size: 2.5rem; margin-bottom: 50px; letter-spacing: 5px;">MISSION_LOGS / 项目记录</h2>
+        <div class="project-grid">
+            <div class="glass-card">
+                <span style="color: var(--neon-blue); font-size: 10px;">TO G | 中国北方车辆研究所</span>
+                <h3 style="margin: 15px 0;">一控多车辆人机交互产品</h3>
+                <p style="font-size: 0.9rem; opacity: 0.6; line-height: 1.6;">聚焦操作效率提升，通过眼动数据闭环 20+ 项核心卡点，项目早于预期顺利验收并正式上车。</p>
+                <div style="margin-top: 25px; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><span style="font-size: 2rem; font-weight: 800;">35.5%</span><p style="font-size: 10px;">操控效率提升</p></div>
+                    <div><span style="font-size: 2rem; font-weight: 800;">-40%</span><p style="font-size: 10px;">操作步骤减少</p></div>
+                </div>
             </div>
-            <div style="text-align: right;"><div class="stat-value">35.5%</div><p>效率提升</p></div>
-        </div>
-        <div class="glass-effect card">
-            <div>
-                <h3>多人协作车辆 HMI 项目 (To B)</h3>
-                <p style="opacity: 0.7; margin-top:15px;">通过验收并正式上车；实现信息布局合理、权限清晰、交互无冲突。</p>
+
+            <div class="glass-card">
+                <span style="color: var(--neon-blue); font-size: 10px;">TO B | 中国兵器工业集团</span>
+                <h3 style="margin: 15px 0;">多人协作车辆交互系统</h3>
+                <p style="font-size: 0.9rem; opacity: 0.6; line-height: 1.6;">搭建从 0 到 1 的多人协同产品，设计对称多屏布局，完美解决权限清晰、交互无冲突等痛点。</p>
+                <div style="margin-top: 25px; text-align: right;">
+                    <span style="padding: 5px 15px; border: 1px solid var(--neon-blue); font-size: 12px; border-radius: 4px;">正式上车方案</span>
+                </div>
             </div>
-            <div style="text-align: right;"><div class="stat-value">正式上车</div></div>
         </div>
     </section>
 
-    <section class="section" id="campus" style="background: rgba(255,255,255,0.02);">
-        <h2 style="margin-bottom:40px;">专项成果</h2>
-        <div class="glass-effect" style="padding:40px;">
-            <p>🏆 考研 428 分（908 名考生中取得第 1 名）</p>
-            <p style="margin-top:15px;">💻 独立完成北京理工大学中关村校区智慧校园大屏 UI 地图绘制。</p>
+    <section class="section" style="background: rgba(0,242,255,0.02);">
+        <div class="glass-card" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: center;">
+            <div style="height: 300px; background: linear-gradient(45deg, #001122, #000); border: 1px dashed var(--neon-blue); display: flex; align-items: center; justify-content: center; position: relative;">
+                <span style="font-size: 12px; color: var(--neon-blue); opacity: 0.5;">[ UI MAP: BIT ZHONGGUANCUN ]</span>
+                <div style="position: absolute; top: 10px; left: 10px; width: 5px; height: 5px; background: var(--neon-blue);"></div>
+            </div>
+            <div>
+                <h2 style="color: var(--neon-blue);">智慧校园可视化大屏</h2>
+                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7; line-height: 1.8;">
+                    使用 Adobe AI 通过全要素鼠标手绘实现校园地图高精度视觉呈现。此方案已正式落地，证明了大型视觉项目的高效推进与落地能力。
+                </p>
+                <p style="margin-top: 15px; font-size: 12px;">🏆 考研 428 分（908 名考生第 1 名）</p>
+            </div>
         </div>
     </section>
+
+    <footer style="padding: 100px 0; text-align: center; opacity: 0.3; font-size: 10px; letter-spacing: 5px;">
+        DESIGNED BY RUIQI WANG | 18733931626
+    </footer>
+
 </body>
 </html>
