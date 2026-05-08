@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王瑞琪 | Ruiqi - 产品体验设计师</title>
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --text-main: #1d1d1f;
+            --text-sub: #86868b;
+            --accent: #0071e3; /* 活力蓝 */
+            --accent-soft: #f5f5f7;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body { font-family: -apple-system, "SF Pro SC", "PingFang SC", sans-serif; background: var(--bg-color); color: var(--text-main); line-height: 1.5; scroll-behavior: smooth; }
+        
+        /* 导航栏 */
+        nav { position: fixed; top: 0; width: 100%; height: 50px; background: rgba(255,255,255,0.7); backdrop-filter: saturate(180%) blur(20px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; gap: 40px; }
+        nav a { text-decoration: none; color: var(--text-main); font-size: 14px; font-weight: 400; opacity: 0.8; transition: var(--transition); }
+        nav a:hover { opacity: 1; color: var(--accent); }
+
+        section { padding: 120px 10% 60px; max-width: 1200px; margin: 0 auto; }
+
+        /* 下载按钮组件 */
+        .btn-group { display: flex; gap: 15px; margin-top: 30px; }
+        .download-btn { 
+            padding: 12px 24px; border-radius: 20px; text-decoration: none; 
+            font-size: 14px; font-weight: 500; transition: var(--transition);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .primary { background: var(--accent); color: #fff; }
+        .primary:hover { background: #0077ed; transform: scale(1.02); }
+        .secondary { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+        .secondary:hover { background: #e8e8ed; }
+
+        /* Axure 交互区域 */
+        .axure-container { 
+            width: 100%; height: 600px; border: 1px solid #eee; border-radius: 12px; 
+            overflow: hidden; background: #fff; margin-top: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .axure-placeholder { 
+            height: 100%; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; text-align: center;
+        }
+
+        /* 亮点卡片 */
+        .highlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .card { background: #fff; padding: 30px; border-radius: 18px; border: 1px solid #f0f0f0; transition: var(--transition); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card h4 { color: var(--accent); margin-bottom: 10px; font-size: 18px; }
+        .card p { font-size: 14px; color: var(--text-sub); }
+
+        @media (max-width: 768px) {
+            .highlight-grid { grid-template-columns: 1fr; }
+            .axure-container { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#about">关于</a>
+    <a href="#projects">项目成果</a>
+    <a href="#axure">交互地图</a>
+    <a href="#skills">能力模型</a>
+</nav>
+
+<section id="about">
+    <h1 style="font-size: 48px; letter-spacing: -1px;">王瑞琪 (Ruiqi)</h1>
+    <p style="font-size: 20px; color: var(--text-sub); margin-top: 10px;">产品体验设计师 / 交互设计硕士</p>
+    
+    <div class="btn-group">
+        <a href="王瑞琪-产品经理简历.pdf" download class="download-btn primary">
+            <span>↓</span> 下载个人简历 (PDF)
+        </a>
+        <a href="Portfolio_WangRuiqi.pdf" download class="download-btn secondary">
+            <span>📁</span> 本科作品集 (PDF)
+        </a>
+    </div>
+</section>
+
+<section id="axure">
+    <h2 style="margin-bottom: 10px;">平面设计与逻辑：中关村可交互地图</h2>
+    <p style="color: var(--text-sub); margin-bottom: 20px;">基于 Axure 制作的动态交互地图。鼠标悬停于地标建筑可查看详细视觉推导。展现了高精度的平面视觉控制力与交互逻辑。</p>
+    
+    <div class="axure-container">
+        <iframe src="axure_map/index.html" width="100%" height="100%" frameborder="0" allowfullscreen>
+            <div class="axure-placeholder">
+                <p>正在加载 Axure 原型...</p>
+                <small>请确保 axure_map 文件夹已上传至仓库</small>
+            </div>
+        </iframe>
+    </div>
+</section>
+
+<section id="highlights">
+    <h2>个人能力亮点</h2>
+    <div class="highlight-grid">
+        <div class="card">
+            <h4>无人系统交互专家</h4>
+            <p>曾主导“一控多”车辆 HMI 项目，使操作步骤减少 40%，具备处理极高认知负载场景的设计经验。</p>
+        </div>
+        <div class="card">
+            <h4>理科逻辑思维</h4>
+            <p>掌握 Python、C++ 及 SPSS 数据分析。擅长从眼动数据中寻找体验突破口，而非仅凭感觉设计。</p>
+        </div>
+        <div class="card">
+            <h4>高还原度视觉表现</h4>
+            <p>从手绘地图到高精度 UI 落地，熟练应用 Figma、Blender 与 Unity，确保设计从稿件到实车的高还原度。</p>
+        </div>
+    </div>
+</section>
+
+<footer style="padding: 100px 10% 50px; text-align: center; color: var(--text-sub); font-size: 12px;">
+    <p>© 2026 王瑞琪 | 以逻辑构建美学 | ruiqi1213@foxmail.com</p>
+</footer>
+
+</body>
+</html>
