@@ -1,101 +1,192 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>王瑞琪 | RUIQI WANG - HMI & 产品专家数字作品集</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王瑞琪 | Ruiqi - 产品体验设计师</title>
     <style>
+        /* --- 全局样式变量 --- */
         :root {
-            --neon-blue: #00f2ff;
-            --glass: rgba(255, 255, 255, 0.15); /* 您要求的15%透明白 */
-            --bg-dark: #020205;
+            --bg-color: #f8f9fa;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --accent-color: #0984e3; /* 低饱和活力蓝 */
+            --accent-light: #ebf5ff;
+            --card-bg: #ffffff;
+            --transition: all 0.3s ease;
         }
-        
+
+        /* --- 基础重置 --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg-dark); 
-            color: #fff; 
-            font-family: 'SF Pro Display', 'PingFang SC', sans-serif;
-            overflow-x: hidden;
+            font-family: 'PingFang SC', 'Inter', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main);
+            line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        /* 统一模糊效果 */
-        .glass-effect {
-            background: var(--glass);
-            backdrop-filter: blur(12px); /* 您要求的12px模糊 */
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* 导航栏 */
+        /* --- 导航栏 --- */
         nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 20px 50px; display: flex; justify-content: space-between;
+            position: fixed; top: 0; width: 100%; height: 70px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 10%; z-index: 1000; border-bottom: 1px solid #eee;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); }
+        .nav-links a {
+            text-decoration: none; color: var(--text-main);
+            margin-left: 30px; font-size: 0.95rem; font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* --- 通用布局 --- */
+        section { padding: 100px 10% 60px; max-width: 1400px; margin: 0 auto; }
+        .section-title { 
+            font-size: 2rem; margin-bottom: 40px; 
+            display: flex; align-items: center; 
+        }
+        .section-title::after {
+            content: ""; flex: 1; height: 1px; background: #ddd; margin-left: 20px;
         }
 
-        /* 简历主体部分 */
-        .hero-section {
+        /* --- Hero Section --- */
+        #hero {
             height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 0 20px;
+            justify-content: center; align-items: flex-start;
+        }
+        .hero-tag { 
+            background: var(--accent-light); color: var(--accent-color);
+            padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: 600;
+        }
+        h1 { font-size: 4rem; margin: 20px 0; letter-spacing: -1px; }
+        .hero-desc { font-size: 1.2rem; color: var(--text-sub); max-width: 600px; }
+
+        /* --- 项目卡片 --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .project-card {
+            background: var(--card-bg); padding: 40px; border-radius: 16px;
+            border: 1px solid #eee; transition: var(--transition);
+        }
+        .project-card:hover {
+            transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: var(--accent-color);
+        }
+        .project-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .project-tag { font-size: 0.8rem; color: var(--accent-color); font-weight: bold; margin-bottom: 10px; display: block; }
+        .highlight-box { 
+            background: #f1f2f6; padding: 15px; border-radius: 8px; margin-top: 20px;
+            font-size: 0.9rem; border-left: 4px solid var(--accent-color);
         }
 
-        /* 核心展示：智慧校园交互地图入口 */
-        #interaction-module {
-            width: 90%; max-width: 1200px; height: 600px;
-            margin: 50px auto; position: relative; border-radius: 24px;
-            overflow: hidden; border: 1px solid rgba(0, 242, 255, 0.3);
+        /* --- 技能标签 --- */
+        .skill-group { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-item {
+            background: #eee; padding: 8px 18px; border-radius: 30px;
+            font-size: 0.9rem; transition: var(--transition);
         }
+        .skill-item:hover { background: var(--accent-color); color: white; }
 
-        #static-cover {
-            position: absolute; inset: 0; z-index: 10;
-            background: url('中关村地图.jpg') center/cover no-repeat;
-            display: flex; align-items: center; justify-content: center;
+        /* --- 联系方式 --- */
+        .contact-info { display: flex; gap: 40px; margin-top: 20px; }
+        .contact-item { font-weight: 500; color: var(--text-main); text-decoration: none; }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            nav { padding: 0 5%; }
+            .nav-links { display: none; } /* 移动端建议折叠或隐藏 */
+            section { padding: 80px 5% 40px; }
+            .project-grid { grid-template-columns: 1fr; }
         }
-
-        .start-btn {
-            padding: 18px 40px; border-radius: 40px; border: 1px solid var(--neon-blue);
-            background: var(--glass); color: var(--neon-blue);
-            cursor: pointer; font-weight: bold; letter-spacing: 2px;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.3); transition: 0.3s;
-        }
-
-        iframe { width: 100%; height: 100%; border: none; display: none; }
     </style>
 </head>
 <body>
 
-    <nav class="glass-effect">
-        <div class="logo">RUIQI WANG</div>
-        <div class="menu">PORTFOLIO / CONTACT</div>
+    <nav>
+        <div class="logo">Ruiqi.Design</div>
+        <div class="nav-links">
+            <a href="#hero">首页</a>
+            <a href="#projects">项目经历</a>
+            <a href="#skills">专业技能</a>
+            <a href="#contact">联系我</a>
+        </div>
     </nav>
 
-    <section class="hero-section">
-        <h1 style="font-size: 3.5rem; letter-spacing: 5px;">王瑞琪</h1>
-        <p style="color: var(--neon-blue); margin: 20px 0;">北京理工大学 · 工业设计工程硕士</p>
-        <div class="glass-effect" style="padding: 30px; border-radius: 20px; max-width: 800px;">
-            <p>主导多项大型可视化大屏方案，具备 HMI 智驾感视觉设计经验。</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">曾参与兵器工业第201研究所实习，负责“一控多”车辆人机交互系统设计。</p>
+    <section id="hero">
+        <span class="hero-tag">2027届毕业生 | 可立刻入职</span>
+        <h1>王瑞琪</h1>
+        <p class="hero-desc">
+            北京理工大学工业设计硕士。专注<b>无人系统人机交互设计</b>，擅长通过数据分析与逻辑重构优化复杂业务流程，提升系统操控效率。
+        </p>
+        <div class="contact-info">
+            <span class="contact-item">WeChat: wrq18733931626</span>
+            <a href="mailto:ruiqi1213@foxmail.com" class="contact-item">ruiqi1213@foxmail.com</a>
         </div>
-        <a href="#interaction-module" style="margin-top: 50px; color: #fff; text-decoration: none;">↓ 向下滑动查看地图交互动效</a>
     </section>
 
-    <div id="interaction-module">
-        <div id="static-cover">
-            <button class="start-btn glass-effect" onclick="startMap()">开启智慧校园交互 / START HMI</button>
+    <section id="projects">
+        <h2 class="section-title">精选项目</h2>
+        <div class="project-grid">
+            <!-- 项目 1 -->
+            <div class="project-card">
+                <span class="project-tag">To G / 复杂系统交互</span>
+                <h3>一控多车辆 HMI 项目</h3>
+                <p>主导多轮界面迭代，聚焦一控多场景下指令下发慢、易误操作问题。</p>
+                <div class="highlight-box">
+                    🚀 <b>成果：</b>操作步骤减少 40%，整体操控效率提升 35.5%。
+                </div>
+            </div>
+            <!-- 项目 2 -->
+            <div class="project-card">
+                <span class="project-tag">To B / 协同交互</span>
+                <h3>多人协作车辆 HMI 产品</h3>
+                <p>从 0 到 1 搭建多人协同系统，明确信息同步机制与权限边界，解决多屏信息分配难题。</p>
+                <div class="highlight-box">
+                    ✅ <b>成果：</b>通过军方验收并正式上车。
+                </div>
+            </div>
+            <!-- 项目 3 -->
+            <div class="project-card">
+                <span class="project-tag">校园项目 / 视觉传达</span>
+                <h3>北理工智慧校园大屏 UI</h3>
+                <p>使用 AI 独立完成全要素手绘校园地图，高精度视觉呈现，已落地应用。</p>
+                <div class="highlight-box">
+                    🏆 <b>表现：</b>展现了极强的视觉落地与大型项目执行能力。
+                </div>
+            </div>
         </div>
-        <iframe id="map-frame" src="about:blank"></iframe>
-    </div>
+    </section>
 
-    <script>
-        function startMap() {
-            document.getElementById('static-cover').style.display = 'none';
-            const frame = document.getElementById('map-frame');
-            frame.style.display = 'block';
-            // 王总，再次确认这里是您改名后的 Axure 首页文件名
-            frame.src = 'main.html'; 
-        }
-    </script>
+    <section id="skills">
+        <h2 class="section-title">专业技能</h2>
+        <div style="margin-bottom: 30px;">
+            <h4 style="margin-bottom: 15px;">设计工具</h4>
+            <div class="skill-group">
+                <span class="skill-item">Figma</span>
+                <span class="skill-item">Sketch</span>
+                <span class="skill-item">Rhino</span>
+                <span class="skill-item">Blender</span>
+                <span class="skill-item">Unity</span>
+                <span class="skill-item">Adobe CC</span>
+            </div>
+        </div>
+        <div>
+            <h4 style="margin-bottom: 15px;">逻辑与分析</h4>
+            <div class="skill-group">
+                <span class="skill-item">Python</span>
+                <span class="skill-item">C++</span>
+                <span class="skill-item">SPSS 数据分析</span>
+                <span class="skill-item">英语 CET-6 (576分)</span>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 60px 0; color: var(--text-sub); border-top: 1px solid #eee;">
+        <p>© 2026 王瑞琪 Ruiqi | Built with Logic & Aesthetic</p>
+    </footer>
+
 </body>
 </html>
